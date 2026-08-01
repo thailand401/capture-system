@@ -23,8 +23,10 @@ from app.db.base import Base
 # Alembic Config object, providing access to values within alembic.ini.
 config = context.config
 
-# Inject the real database URL from application settings.
-config.set_main_option("sqlalchemy.url", get_settings().database_url)
+# Inject the real database URL from application settings. Escape '%' as
+# '%%' so ConfigParser interpolation does not choke on URL-encoded
+# passwords (e.g. '%40' for '@').
+config.set_main_option("sqlalchemy.url", get_settings().database_url.replace("%", "%%"))
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)

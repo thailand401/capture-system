@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class ProcessingLog(TimestampMixin, Base):
     """A single logged action taken by the worker/pipeline for a capture event."""
 
-    __tablename__ = "processing_log"
+    __tablename__ = "sc_processing_log"
 
     id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
 
@@ -30,7 +30,7 @@ class ProcessingLog(TimestampMixin, Base):
     # tied to a specific capture event.
     capture_event_id: Mapped[int | None] = mapped_column(
         BigInteger,
-        ForeignKey("capture_event.id", ondelete="CASCADE"),
+        ForeignKey("sc_capture_event.id", ondelete="CASCADE"),
         nullable=True,
         index=True,
     )

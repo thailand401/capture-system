@@ -22,13 +22,13 @@ if TYPE_CHECKING:
 class Prediction(TimestampMixin, Base):
     """An AI pipeline result produced for a single capture event."""
 
-    __tablename__ = "prediction"
+    __tablename__ = "sc_prediction"
 
     id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
 
     capture_event_id: Mapped[int] = mapped_column(
         BigInteger,
-        ForeignKey("capture_event.id", ondelete="CASCADE"),
+        ForeignKey("sc_capture_event.id", ondelete="CASCADE"),
         nullable=False,
         index=True,
     )

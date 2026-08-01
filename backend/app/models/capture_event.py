@@ -26,8 +26,8 @@ if TYPE_CHECKING:
 class CaptureEvent(TimestampMixin, Base):
     """A traffic-sign capture event uploaded from an Android device."""
 
-    __tablename__ = "capture_event"
-    __table_args__ = (Index("ix_capture_event_status_created_at", "status", "created_at"),)
+    __tablename__ = "sc_capture_event"
+    __table_args__ = (Index("ix_sc_capture_event_status_created_at", "status", "created_at"),)
 
     id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
 
